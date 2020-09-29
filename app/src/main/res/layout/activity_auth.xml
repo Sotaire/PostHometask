@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#5B69E9"
+    tools:context=".ui.auth.AuthActivity">
+
+    <TextView
+        android:id="@+id/text_view"
+        android:layout_width="325dp"
+        android:layout_height="16dp"
+        android:layout_marginLeft="16sp"
+        android:layout_marginTop="190dp"
+        android:text="User Login"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/auth_login_et"
+        android:layout_width="327dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="7sp"
+        android:background="@drawable/user_login_background"
+        android:textColor="#FFFFFF"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view" />
+
+    <TextView
+        android:id="@+id/text_view_2"
+        android:layout_width="325dp"
+        android:layout_height="16dp"
+        android:layout_marginLeft="16sp"
+        android:layout_marginTop="5dp"
+        android:text="User Password"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/auth_login_et" />
+
+    <EditText
+        android:id="@+id/auth_password_et"
+        android:layout_width="327dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="7sp"
+        android:background="@drawable/user_login_background"
+        android:textColor="#FFFFFF"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view_2" />
+
+    <Button
+        android:id="@+id/sing_in"
+        android:layout_width="327dp"
+        android:layout_height="56dp"
+        android:layout_marginLeft="18sp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/button_sign_in"
+        android:text="Sign in"
+        android:textAllCaps="false"
+        android:textColor="#2E43FF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
