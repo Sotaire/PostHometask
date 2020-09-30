@@ -1,10 +1,12 @@
 package com.example.posthometask.ui.list;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -66,20 +68,33 @@ public class ListFragment extends Fragment {
         listAdapter.setListener(new PostClickListener() {
             @Override
             public void onCLick(int position) {
-                Integer id = postModels.get(0).getId();
-                AndroidClient.getClient().deleteData(id).enqueue(new Callback<PostModel>() {
+                Integer id = postModels.get(position).getId();
+                AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+                builder.setMessage("удалить запись " + postModels.get(position).getTitle() + "?");
+                builder.setNegativeButton("отмена", null);
+                builder.setPositiveButton("да", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onResponse(Call<PostModel> call, Response<PostModel> response) {
-                        if (response.isSuccessful()){
-                            Log.d("delete", String.valueOf(response.body().getId()));
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<PostModel> call, Throwable t) {
-                        Log.d("delete",t.getMessage());
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        deleteData(id);
                     }
                 });
+                builder.show();
+            }
+        });
+    }
+
+    public void deleteData(int id){
+        AndroidClient.getClient().deleteData(id).enqueue(new Callback<PostModel>() {
+            @Override
+            public void onResponse(Call<PostModel> call, Response<PostModel> response) {
+                if (response.isSuccessful()){
+                    Log.d("delete", String.valueOf(response.body().getId()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PostModel> call, Throwable t) {
+                Log.d("delete",t.getMessage());
             }
         });
     }
