@@ -1,4 +1,4 @@
-package com.example.posthometask.data.network;
+package com.example.posthometask.interfaces;
 
 import com.example.posthometask.data.models.PostModel;
 
@@ -10,6 +10,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface AndroidApi {
 
@@ -21,5 +22,8 @@ public interface AndroidApi {
     
     @DELETE("posts/{postId}")
     Call<PostModel> deleteData(@Path("postId")Integer postId);
+
+    @GET("posts?users")
+    Call<ArrayList<PostModel>> getUsers();
 
 }

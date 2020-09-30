@@ -1,4 +1,4 @@
-package com.example.posthometask.data.network;
+package com.example.posthometask.interfaces;
 
 import com.example.AuthModel;
 
