@@ -2,7 +2,6 @@ package com.example.posthometask.ui.main;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -11,10 +10,8 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.posthometask.R;
-import com.example.posthometask.adapters.FragmentAdapters;
+import com.example.posthometask.fragmentA.FragmentAdapters;
 import com.example.posthometask.data.local.PreferenceUtils;
-import com.example.posthometask.data.models.PostModel;
-import com.example.posthometask.data.network.AndroidClient;
 import com.example.posthometask.ui.auth.AuthActivity;
 import com.example.posthometask.ui.list.ListFragment;
 import com.example.posthometask.ui.save.SaveFragment;
@@ -22,10 +19,6 @@ import com.example.posthometask.ui.user.UserFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 

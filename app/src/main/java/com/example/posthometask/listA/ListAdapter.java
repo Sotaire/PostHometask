@@ -1,4 +1,4 @@
-package com.example.posthometask.adapters;
+package com.example.posthometask.listA;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.posthometask.R;
 import com.example.posthometask.data.models.PostModel;
-import com.example.posthometask.interfaces.PostClickListener;
 
 import java.util.ArrayList;
 
@@ -28,6 +27,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListViewHolder
         notifyDataSetChanged();
     }
 
+    public void deletePost(int position){
+        postBodies.remove(position);
+        notifyItemRemoved(position);
+    }
+
     @NonNull
     @Override
     public ListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -37,9 +41,15 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ListViewHolder holder, int position) {
-        holder.bind(postBodies.get(position).getTitle(),
-                postBodies.get(position).getContent(),
-                postBodies.get(position).getUser().toString());
+        if (postBodies.get(position).getTitle() != null){
+            holder.title.setText(postBodies.get(position).getTitle());
+        }
+        if (postBodies.get(position).getContent() != null) {
+            holder.content.setText(postBodies.get(position).getContent());
+        }
+        if (postBodies.get(position).getUser() != null){
+            holder.user.setText(postBodies.get(position).getUser().toString());
+        }
     }
 
     @Override
@@ -56,10 +66,16 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListViewHolder
             title = itemView.findViewById(R.id.title_post_tv);
             content = itemView.findViewById(R.id.content_post_tv);
             user = itemView.findViewById(R.id.user_post_tv);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onClick(getAdapterPosition());
+                }
+            });
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
-                    listener.onCLick(getAdapterPosition());
+                    listener.onLongCLick(getAdapterPosition());
                     return true;
                 }
             });

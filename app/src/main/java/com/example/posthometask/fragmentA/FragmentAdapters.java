@@ -1,4 +1,4 @@
-package com.example.posthometask.adapters;
+package com.example.posthometask.fragmentA;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
