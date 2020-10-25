@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -53,7 +54,7 @@ public class AuthActivity extends AppCompatActivity {
         userPassword = findViewById(R.id.auth_password_et);
         singIn = findViewById(R.id.sing_in);
         generate = findViewById(R.id.generate_qr);
-        generate.setOnClickListener(new View.OnClickListener() {
+        singIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 scanQr();
@@ -94,38 +95,44 @@ public class AuthActivity extends AppCompatActivity {
     }
 
     private void signIn() {
-        singIn.setOnClickListener(new View.OnClickListener() {
+        generate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String login = userLogin.getText().toString();
                 String password = userPassword.getText().toString();
                 String id = Credentials.basic(login,password);
 
-                QRCodeWriter qrCodeWriter = new QRCodeWriter();
-                try {
-                    BitMatrix matrix;
-                    if (!id.isEmpty() && id != null){
-                        matrix = qrCodeWriter.encode(id, BarcodeFormat.QR_CODE,200,200);
-                    }else{
-                        matrix = qrCodeWriter.encode("Not Found", BarcodeFormat.QR_CODE,200,200);
-                    }
-                    Bitmap bitmap = Bitmap.createBitmap(200,200,Bitmap.Config.RGB_565);
-
-                    for (int x = 0; x < 300; x++){
-                        for (int y = 0; y < 300; y++){
-                            int color;
-                            if (matrix.get(x,y)){
-                                color = Color.BLACK;
-                            }else {
-                                color = Color.WHITE ;
-                            }
-                            bitmap.setPixel(x,y,color);
-                        }
-                    }
-
-                }catch (Exception e){
-
-                }
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT,id);
+                startActivity(Intent.createChooser(intent,"use qr code generator"));
+//                QRCodeWriter qrCodeWriter = new QRCodeWriter();
+//                try {
+//                    BitMatrix matrix;
+//                    if (!id.isEmpty() && id != null){
+//                        matrix = qrCodeWriter.encode(id, BarcodeFormat.QR_CODE,200,200);
+//                    }else{
+//                        matrix = qrCodeWriter.encode("Not Found", BarcodeFormat.QR_CODE,200,200);
+//                    }
+//                    Bitmap bitmap = Bitmap.createBitmap(200,200,Bitmap.Config.RGB_565);
+//
+//                    for (int x = 0; x < 300; x++){
+//                        for (int y = 0; y < 300; y++){
+//                            int color;
+//                            if (matrix.get(x,y)){
+//                                color = Color.BLACK;
+//                            }else {
+//                                color = Color.WHITE ;
+//                            }
+//                            bitmap.setPixel(x,y,color);
+//                        }
+//                    }
+//
+//
+//                }catch (Exception e){
+//
+//                }
+//
             }
         });
     }

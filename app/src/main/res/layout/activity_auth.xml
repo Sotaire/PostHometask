@@ -7,6 +7,7 @@
     android:background="#5B69E9"
     tools:context=".ui.auth.AuthActivity">
 
+
     <TextView
         android:id="@+id/text_view"
         android:layout_width="325dp"
@@ -58,7 +59,7 @@
         android:layout_width="327dp"
         android:layout_height="56dp"
         android:layout_marginLeft="18sp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/button_sign_in"
         android:text="Generate Qr code"
         android:textAllCaps="false"
